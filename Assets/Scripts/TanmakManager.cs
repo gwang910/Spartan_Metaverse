@@ -33,13 +33,13 @@ public class TanmakManager : MonoBehaviour
     {
         foreach (var point in spawnPoints)
         {
-            GameObject bullet = Instantiate(tanmakPrefab, point.position, Quaternion.identity);
+            GameObject tanmak = Instantiate(tanmakPrefab, point.position, Quaternion.identity);
 
             // 360도 중 랜덤한 각도 생성
             float angle = Random.Range(0f, 360f);
             Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
 
-            bullet.GetComponent<TanmakBall>().Init(direction);
+            tanmak.GetComponent<TanmakBall>().Init(direction);
         }
     }
 }
