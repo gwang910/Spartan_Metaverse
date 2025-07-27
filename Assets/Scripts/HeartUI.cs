@@ -6,6 +6,7 @@ using UnityEngine;
 public class HeartUI : MonoBehaviour
 {
     public GameObject[] hearts;
+    public GameObject gameOverPanel;  // Inspector에서 연결
 
     void Awake()
     {
@@ -29,6 +30,10 @@ public class HeartUI : MonoBehaviour
         {
             hearts[i].SetActive(i < life);
         }
+        if (life <= 0)
+        {
+            FindObjectOfType<TanmakManager>().GameOver();
+        }
     }
 
     public void HideAllHearts()
@@ -38,4 +43,5 @@ public class HeartUI : MonoBehaviour
             heart.SetActive(false);
         }
     }
+
 }

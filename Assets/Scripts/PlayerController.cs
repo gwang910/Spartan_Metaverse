@@ -46,6 +46,7 @@ public class PlayerController : BaseController
             {
                 Debug.Log("Game Over");
                 // TODO: 게임 종료 처리
+                currentHP += 3;
             }
 
             Destroy(collision.gameObject);
