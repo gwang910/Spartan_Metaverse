@@ -25,15 +25,21 @@ public class TanmakManager : MonoBehaviour
         if (timer >= spawnRate)
         {
             timer = 0;
-            FireBullet();
+            FireTanmak();
         }
     }
 
-    void FireBullet()
+    void FireTanmak()
     {
         foreach (var point in spawnPoints)
         {
-            Instantiate(tanmakPrefab, point.position, Quaternion.identity);
+            GameObject bullet = Instantiate(tanmakPrefab, point.position, Quaternion.identity);
+
+            // 360도 중 랜덤한 각도 생성
+            float angle = Random.Range(0f, 360f);
+            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+
+            bullet.GetComponent<TanmakBall>().Init(direction);
         }
     }
 }

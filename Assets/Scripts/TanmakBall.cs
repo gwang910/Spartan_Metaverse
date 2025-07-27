@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TanmakBall : MonoBehaviour
 {
+    [SerializeField] private LayerMask levelCollisionLayer;
+
     public float speed = 3f;
     private Vector2 moveDirection;
 
@@ -12,17 +14,16 @@ public class TanmakBall : MonoBehaviour
         moveDirection = direction.normalized;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+            Destroy(gameObject);
+    }
+
+
+
     void Update()
     {
         transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // 벽에 부딪히면 제거
-        if (collision.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
-    }
 }
