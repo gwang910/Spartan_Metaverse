@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ButtonVisibilityTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonObject; // ¹öÆ°
+    [SerializeField] private GameObject buttonObject;
     public Button button;
 
     private void Awake()

@@ -6,6 +6,9 @@ public class PlayerController : BaseController
 {
     private Camera camera;
 
+    public HeartUI heartUI;
+    private int currentHP = 3;
+
     protected override void Start()
     {
         base.Start();
@@ -29,6 +32,23 @@ public class PlayerController : BaseController
         else
         {
             lookDirection = lookDirection.normalized;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Tanmak"))
+        {
+            currentHP--;
+            heartUI.UpdateHearts(currentHP);
+
+            if (currentHP <= 0)
+            {
+                Debug.Log("Game Over");
+                // TODO: 게임 종료 처리
+            }
+
+            Destroy(collision.gameObject);
         }
     }
 }
