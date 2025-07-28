@@ -12,9 +12,14 @@ public class CoinManager : MonoBehaviour
     public Tilemap groundTilemap; // 동전이 생성될 타일맵
     public int coinCount = 10;
 
+    public GameObject resultPanel;
+    public Text resultTimeText;
+
     public Text scoreText;
+    public Text timeText;
 
     private int score = 0;
+    private float timer = 0f;
 
     void Awake()
     {
