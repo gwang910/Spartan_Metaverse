@@ -5893,9 +5893,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TanmakManager, Assembly-CSharp
-        m_MethodName: 
+      - m_Target: {fileID: 744286950}
+        m_TargetAssemblyTypeName: CoinManager, Assembly-CSharp
+        m_MethodName: EndGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7594,14 +7594,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d79be64f9a33447b83be92bc4dcbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundTilemap: {fileID: 158773751}
   coinPrefab: {fileID: 6248065160187162210, guid: 82b47fd98b12d284da43c8baea439b03,
     type: 3}
-  spawnTiles: []
   totalCoins: 10
   scoreText: {fileID: 229330691}
   timeText: {fileID: 1616692367}
   resultPanel: {fileID: 1946085708}
-  resultTimeText: {fileID: 2066452555}
+  resultTimeText: {fileID: 601826318}
   bestTimeText: {fileID: 1746923562}
   noticePanel: {fileID: 203951189}
 --- !u!4 &744286951
