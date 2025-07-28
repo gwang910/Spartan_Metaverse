@@ -66,6 +66,12 @@ public class CoinManager : MonoBehaviour
 
         activeCoins.Clear();
 
+        if (spawnTiles.Length < totalCoins)
+        {
+            Debug.LogError("spawnTiles 개수가 totalCoins보다 적습니다. 무한 루프 방지!");
+            totalCoins = spawnTiles.Length;  // 또는 return;
+        }
+
         // 랜덤 위치 선택
         List<int> indices = new List<int>();
         while (indices.Count < totalCoins)
