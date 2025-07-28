@@ -8,8 +8,7 @@ public class Coin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CoinManager.Instance.AddScore(1);  // 점수 증가
-            Destroy(gameObject);              // 동전 제거
+            FindObjectOfType<CoinManager>().CollectCoin(gameObject);
         }
     }
 }

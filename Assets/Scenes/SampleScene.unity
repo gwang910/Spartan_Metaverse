@@ -7581,7 +7581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &744286950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7596,12 +7596,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 6248065160187162210, guid: 82b47fd98b12d284da43c8baea439b03,
     type: 3}
-  groundTilemap: {fileID: 158773751}
-  coinCount: 10
-  resultPanel: {fileID: 0}
-  resultTimeText: {fileID: 0}
+  spawnTiles: []
+  totalCoins: 10
   scoreText: {fileID: 229330691}
-  timeText: {fileID: 0}
+  timeText: {fileID: 1616692367}
+  resultPanel: {fileID: 1946085708}
+  resultTimeText: {fileID: 2066452555}
+  bestTimeText: {fileID: 1746923562}
+  noticePanel: {fileID: 203951189}
 --- !u!4 &744286951
 Transform:
   m_ObjectHideFlags: 0
@@ -7736,6 +7738,7 @@ GameObject:
   - component: {fileID: 1048311403}
   - component: {fileID: 1048311402}
   - component: {fileID: 1048311401}
+  - component: {fileID: 1048311404}
   m_Layer: 5
   m_Name: StartButton2
   m_TagString: Untagged
@@ -7806,7 +7809,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1048311402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1048311404}
+        m_TargetAssemblyTypeName: CoinStarter, Assembly-CSharp
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1048311402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7845,6 +7860,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048311399}
   m_CullTransparentMesh: 1
+--- !u!114 &1048311404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048311399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e99e100e5fead4d98ce4b892834b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinManager: {fileID: 744286949}
 --- !u!1 &1073563769
 GameObject:
   m_ObjectHideFlags: 0
@@ -10722,6 +10750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1669212181}
   - component: {fileID: 1669212182}
+  - component: {fileID: 1669212183}
   m_Layer: 0
   m_Name: MimiGame2Zone
   m_TagString: Untagged
@@ -10789,6 +10818,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.3, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &1669212183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669212180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067a332a1ab18034190bfbb860fb9473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonObject: {fileID: 1048311399}
+  button: {fileID: 1048311401}
 --- !u!1 &1685180450
 GameObject:
   m_ObjectHideFlags: 0

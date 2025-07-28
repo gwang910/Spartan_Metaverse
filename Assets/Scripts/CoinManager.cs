@@ -6,78 +6,107 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public static CoinManager Instance;
-
     public GameObject coinPrefab;
-    public Tilemap groundTilemap; // 동전이 생성될 타일맵
-    public int coinCount = 10;
-
-    public GameObject resultPanel;
-    public Text resultTimeText;
+    public Transform[] spawnTiles; // 동전이 생성될 위치
+    public int totalCoins = 10;
 
     public Text scoreText;
     public Text timeText;
+    public GameObject resultPanel;
+    public Text resultTimeText;
+    public Text bestTimeText;
 
-    private int score = 0;
+    public GameObject noticePanel;
+
+    private int collectedCoins = 0;
     private float timer = 0f;
+    private bool isPlaying = false;
+    private List<GameObject> activeCoins = new List<GameObject>();
 
-    void Awake()
+    private float bestTime = float.MaxValue;
+
+    void Update()
     {
-        Instance = this;
+        if (!isPlaying) return;
+
+        timer += Time.deltaTime;
+        timeText.text = timer.ToString("N2") + "s";
     }
 
-    void Start()
+    public void StartCoinGame()
     {
+        StartCoroutine(ShowNoticeAndStart());
+    }
+
+    IEnumerator ShowNoticeAndStart()
+    {
+        noticePanel.SetActive(true);
+        resultPanel.SetActive(false);
+        timeText.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(3f);
+
+        noticePanel.SetActive(false);
+        timeText.gameObject.SetActive(true);
+
+        collectedCoins = 0;
+        timer = 0f;
+        isPlaying = true;
+
+        scoreText.text = "0 / " + totalCoins;
+
         SpawnCoins();
-        UpdateScoreText();
     }
 
-    public void SpawnCoins()
+    void SpawnCoins()
     {
-        BoundsInt bounds = groundTilemap.cellBounds;
+        // 기존 동전 제거
+        foreach (var c in activeCoins)
+            Destroy(c);
 
-        int attempts = 0;
-        int spawned = 0;
+        activeCoins.Clear();
 
-        while (spawned < coinCount && attempts < 1000)
+        // 랜덤 위치 선택
+        List<int> indices = new List<int>();
+        while (indices.Count < totalCoins)
         {
-            attempts++;
+            int rand = Random.Range(0, spawnTiles.Length);
+            if (!indices.Contains(rand)) indices.Add(rand);
+        }
 
-            int x = Random.Range(bounds.xMin, bounds.xMax);
-            int y = Random.Range(bounds.yMin, bounds.yMax);
-            Vector3Int cellPos = new Vector3Int(x, y, 0);
-
-            // 해당 셀에 타일이 존재하는 경우만 동전 생성
-            if (groundTilemap.HasTile(cellPos))
-            {
-                Vector3 worldPos = groundTilemap.CellToWorld(cellPos) + new Vector3(0.5f, 0.5f, 0); // 중앙 보정
-                Instantiate(coinPrefab, worldPos, Quaternion.identity);
-                spawned++;
-            }
+        foreach (int i in indices)
+        {
+            GameObject coin = Instantiate(coinPrefab, spawnTiles[i].position, Quaternion.identity);
+            activeCoins.Add(coin);
         }
     }
 
-    public void AddScore(int value)
+    public void CollectCoin(GameObject coin)
     {
-        score += value;
-        UpdateScoreText();
-    }
+        collectedCoins++;
+        scoreText.text = collectedCoins + " / " + totalCoins;
 
-    void UpdateScoreText()
-    {
-        scoreText.text = "Score: " + score;
-    }
+        activeCoins.Remove(coin);
+        Destroy(coin);
 
-    public void ResetGame()
-    {
-        score = 0;
-        UpdateScoreText();
-
-        foreach (var coin in GameObject.FindGameObjectsWithTag("Coin"))
+        if (collectedCoins >= totalCoins)
         {
-            Destroy(coin);
+            GameOver();
+        }
+    }
+
+    void GameOver()
+    {
+        isPlaying = false;
+
+        resultPanel.SetActive(true);
+        resultTimeText.text = "Clear Time: " + timer.ToString("N2") + "s";
+
+        if (timer < bestTime)
+        {
+            bestTime = timer;
         }
 
-        SpawnCoins();
+        bestTimeText.text = "Best Time: " + bestTime.ToString("N2") + "s";
     }
 }
