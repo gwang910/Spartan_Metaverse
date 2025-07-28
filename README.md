@@ -19,5 +19,12 @@
 
 재미있게 즐겨주세요!
 
+<추신> 
+도전과제 추가 미니게임 '동전줍기'도 완성했습니다! 석상 반대편의 기동과 상호작용하면 시작됩니다.
+![화면 캡처 2025-07-28 113942](https://github.com/user-attachments/assets/b139410c-9c2e-45cc-adf3-875618d72425)
+![화면 캡처 2025-07-28 114011](https://github.com/user-attachments/assets/a147e19e-4f1b-4553-b0d1-8ada47b2e6e4)
+![화면 캡처 2025-07-28 114037](https://github.com/user-attachments/assets/7c18c1f1-7786-4c9d-b7fb-8946400b27dd)
+
+
 제작자 블로그
 https://velog.io/@ckrhkdgh22/TIL20250728-%EC%9C%A0%EB%8B%88%ED%8B%B0-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%8E%98%EC%85%9C-
